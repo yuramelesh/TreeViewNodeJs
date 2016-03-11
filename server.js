@@ -2,7 +2,24 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var data    = require('./data');
+var mysql   = require('mysql');
 
+var connection = mysql.createConnection({
+    host: 'mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/',
+    user: 'adminDHS8W36',
+    password: '8vNnESg31wm4',
+    database: 'servernode'
+});
+
+//var connection = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'root',
+//    password: '78561245',
+//    database: 'servernode'
+//});
+
+//data.add();
 
 /**
  *  Define the sample application.
@@ -107,6 +124,7 @@ var SampleApp = function() {
     };
 
 
+
     /**
      *  Initialize the server (express) and create the routes and register
      *  the handlers.
@@ -119,7 +137,19 @@ var SampleApp = function() {
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
+
+        self.app.get('/show', function(req, res){
+            connection.query("SELECT * FROM companies WHERE 1",  function(err, result) {
+                res.send(result);
+            });
+        });
+
+        self.app.get('/add', function(req, res){
+            res.send('data added!');
+            data.add(req.query.name, req.query.earnings, req.query.parent);
+        });
     };
+
 
 
     /**
@@ -149,11 +179,9 @@ var SampleApp = function() {
 };   /*  Sample Application.  */
 
 
-
 /**
  *  main():  Main code.
  */
 var zapp = new SampleApp();
 zapp.initialize();
 zapp.start();
-
