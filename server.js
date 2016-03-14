@@ -6,7 +6,8 @@ var data    = require('./data');
 var mysql   = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/',
+    host: 'OPENSHIFT_MYSQL_DB_HOST',
+    port:'OPENSHIFT_MYSQL_DB_PORT',
     user: 'adminDHS8W36',
     password: '8vNnESg31wm4',
     database: 'servernode'
