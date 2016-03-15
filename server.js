@@ -132,6 +132,10 @@ var SampleApp = function () {
             self.app.get(r, self.routes[r]);
         }
 
+        for (var r in self.routes) {
+            self.app.post(r, self.routes[r]);
+        }
+
         self.app.post('/getData', function (req, res) {
             data.mysqlconnection.query("SELECT * FROM companies WHERE 1", function (err, result) {
                 res.send(result);
@@ -143,12 +147,12 @@ var SampleApp = function () {
         });
 
         self.app.post('/update', function (req, res) {
-            data.update(req.body.id, req.body.name, req.body.earnings, req.body.parent);
-            res.send();
+            data.updating(req.body.id, req.body.name, req.body.earnings, req.body.parent);
+            res.send('');
         });
 
         self.app.post('/add', function (req, res) {
-            data.add(req.body.name, req.body.earnings, req.body.parent);
+            data.adding(req.body.name, req.body.earnings, req.body.parent);
         });
     };
 

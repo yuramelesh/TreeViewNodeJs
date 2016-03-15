@@ -23,12 +23,12 @@ var connection = mysql.createConnection({
  * Adding new company
  */
 
-function add(n, e, p) {
+function adding(n, e, p) {
 
     var newCompany = {name: n, earnings: e, parent: p};
     connection.query('INSERT INTO companies SET ?', newCompany, function (err, result) {
-        console.log(err);
-        console.log(result);
+        //console.log(err);
+        //console.log(result);
     });
 }
 
@@ -40,8 +40,8 @@ var updateName = 'UPDATE companies SET name = ? WHERE id=?';
 var updateEarnings = 'UPDATE companies SET earnings = ? WHERE id=?';
 var updateParent = 'UPDATE companies SET parent = ? WHERE id=?';
 
-function update(id, name, earnings, parent) {
-    if (name !== null) {
+function updating(id, name, earnings, parent) {
+    if (name !== '') {
         connection.query(updateName, [name, id], function (err, res) {
             if (err) throw err;
             else {
@@ -49,7 +49,7 @@ function update(id, name, earnings, parent) {
         });
     }
 
-    if (earnings !== null) {
+    if (earnings !== '') {
         connection.query(updateEarnings, [earnings, id], function (err, res) {
             if (err) throw err;
             else {
@@ -57,7 +57,7 @@ function update(id, name, earnings, parent) {
         });
     }
 
-    if (parent !== null) {
+    if (parent !== '') {
         connection.query(updateParent, [parent, id], function (err, res) {
             if (err) throw err;
             else {
@@ -76,12 +76,12 @@ function remove(id) {
 
     connection.query('SELECT * FROM companies WHERE parent=' + id, function (err, result) {
         result.forEach(function(obj){
-            update(obj.id, obj.name, obj.earnings, 0);
+            updating(obj.id, obj.name, obj.earnings, 0);
         });
     });
 }
 
 exports.mysqlconnection = connection;
-exports.add = add;
-exports.update = update;
+exports.adding = adding;
+exports.updating = updating;
 exports.remove = remove;

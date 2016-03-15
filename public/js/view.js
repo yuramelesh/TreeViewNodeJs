@@ -62,18 +62,6 @@ $(function () {
     })
 });
 
-$(function () {
-    $('#show_link').click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/getData",
-            success: function (data) {
-                drawMenu(data);
-            }
-        });
-    })
-});
-
 function drawMenu(data) {
 
     $('#add-form').css("display", "none");
@@ -169,6 +157,18 @@ function drawMenu(data) {
 }
 
 $(function () {
+    $('#show_link').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/getData",
+            success: function (data) {
+                drawMenu(data);
+            }
+        });
+    })
+});
+
+$(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
         $.ajax({
@@ -176,11 +176,7 @@ $(function () {
             url: '/add',
             data: data,
             success: function () {
-                $('#main').html('');
-
-            },
-            error: function (xhr, str) {
-
+                loadData();
             }
         });
     });
@@ -195,9 +191,6 @@ $(function () {
             data: data,
             success: function () {
                 loadData();
-            },
-            error: function (xhr, str) {
-
             }
         });
     });
@@ -207,13 +200,11 @@ $(function () {
     $('#delete').submit(function () {
         var data = $('#delete').serialize();
         $.ajax({
-            type: 'POST',
             url: '/remove',
+            type: 'POST',
             data: data,
             success: function () {
-
-            },
-            error: function (xhr, str) {
+                loadData();
             }
         });
     });
