@@ -1,0 +1,33 @@
+ul {
+    list-style: none;
+}
+
+#buttons_block > div{
+    float: left;
+    margin: 10px;
+}
+
+#content{
+    clear: both;
+}
+#main-content{
+    clear: both;
+}
+
+#edit-form{
+    display: none;
+    border: 1px solid black;
+    width: 300px;
+}
+
+#add-form{
+    display: none;
+    border: 1px solid black;
+    width: 300px;
+}
+
+#delete-form{
+    display: none;
+    border: 1px solid black;
+    width: 300px;
+}

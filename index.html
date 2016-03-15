@@ -5,204 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Welcome</title>
     <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <script src="js/view.js"></script>
+    <link href="css/style.css" rel="stylesheet">
     <style>
-        ul {
-            list-style: none;
-        }
+
 
     </style>
 </head>
 
 <body>
-<h1>Welcome to Node.js !</h1>
 
-<div id='addForm' style="border: 1px solid black; width: 250px;">
-    <form method="get" id="formx" style="margin: 10px;  ">
-        <legend>Add company:</legend>
-        <br>
-        <label for="name">Name:</label><input id="name" name="name" value="" type="text">
-        <br>
-        <label for="email">Earnings:</label><input id="email" name="earnings" value="" type="text">
-        <label for="email">Parent company:</label>
-        <select id="companySelect" name="parent">
-            <option value="0"> None </option>
-        </select>
-        <br>
-        <input value="Submit" type="submit">
-    </form>
+<h1>Welcome to my Node.js test task!</h1>
+
+<div id="buttons_block">
+    <div id="show_div"><a href="#" id="show_link">Show companies tree</a></div>
+    <div>|</div>
+    <div id="create_div"><a href="#" id="create_link">Create company</a></div>
+    <div>|</div>
+    <div id="edit_div"><a href="#" id="edit_link">Edit company</a></div>
+    <div>|</div>
+    <div id="remove_div"><a href="#" id="remove_link">Remove company</a></div>
 </div>
 
-<div id='deleteForm' style="border: 1px solid black; width: 250px;">
-    <form method="get" id="delete" style="margin: 10px;  ">
-        <legend>Delete company:</legend>
-        <label for="email">Company:</label>
-        <select id="companySelect1" name="parent">
-            <option value="0"> None </option>
-        </select>
-        <br>
-        <input value="Delete" type="submit">
-    </form>
+<div id="main-content">
+    <div id="main"></div>
+
+    <div id='add-form'>
+        <form method="get" id="adding" style="margin: 10px;  ">
+            <legend>Add company:</legend>
+            <br>
+            <label>Name:</label>
+            <input id="name" name="name" value="" type="text" required>
+            <br>
+            <label>Earnings:</label>
+            <input type="number" id="email" name="earnings" value="" required>
+            <label>Parent company:</label>
+            <select id="addList" name="parent">
+                <option value="0"> None</option>
+            </select>
+            <br>
+            <input value="Submit" type="submit">
+        </form>
+    </div>
+
+    <div id='edit-form'>
+        <form method="get" id="edit" style="margin: 10px;  ">
+            <legend>Edit company information:</legend>
+            <label>Select company:</label>
+            <select id="editList" name="id">
+            </select>
+            <br>
+            <label>Name:</label>
+            <input id="name" name="name" value="" type="text">
+            <br>
+            <label>Earnings:</label>
+            <input type="number" id="email" name="earnings" value="">
+            <label>Parent company:</label>
+            <select id="parentList" name="parent">
+                <option value="0"> None</option>
+            </select>
+            <input value="Submit" type="submit">
+        </form>
+    </div>
+
+    <div id='delete-form'>
+        <form method="get" id="delete" style="margin: 10px;  ">
+            <legend>Delete company:</legend>
+            <br>
+            <label>Company:</label>
+            <select id="deleteList" name="id" onchange="monitor()">
+                <option value="0"> None</option>
+            </select>
+            <br>
+            <input value="Delete" type="submit">
+        </form>
+    </div>
+
+
 </div>
-
-
-<div id="select_div"><a href="#" id="select_link">show</a></div>
-
-
-<div id="main">
-
-</div>
-
 </body>
-
-<script type="text/javascript">
-
-    document.addEventListener("DOMContentLoaded", addCompanies);
- var selectElement = document.getElementById('companySelect');
-
-            data.forEach(function (s) {
-                var optionElement = document.createElement('option');
-                optionElement.value = s.id;
-                optionElement.innerHTML = s.name;
-                selectElement.appendChild(optionElement);
-            });
-    function addCompanies() {
-        $.ajax({
-            type: "GET",
-            url: "/show",
-            success: function (data) {
-
-                //localFunction(data);
-                var selectElement = document.getElementById('companySelect');
-
-                data.forEach(function (s) {
-                    var optionElement = document.createElement('option');
-                    optionElement.value = s.id;
-                    optionElement.innerHTML = s.name;
-                    selectElement.appendChild(optionElement);
-                });
-            }
-        });
-
-        function localFunction(data) {
-
-        }
-    }
-
-    $(function () {
-        $('#select_link').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/show",
-                success: function (data) {
-
-                    var ul = document.createElement('ul');
-                    drawMenu(data);
-
-                }
-            });
-        })
-    });
-
-    function drawMenu(data) {
-
-        var menu = document.createElement('ul');
-        menu.id = 'mainUl';
-        document.getElementById('main').appendChild(menu);
-
-        var mainCounter = 0;
-        data.forEach(function (mainCompanyItem) {
-
-            mainCounter += mainCompanyItem.earnings;
-
-            if (mainCompanyItem.parent === 0) {
-
-                var mainItemElement = document.createElement('ul');
-                mainItemElement.id = mainCompanyItem.id;
-                mainItemElement.className = 'item';
-                //mainItemElement.onmouseover = crudButtons;
-                var spanName = document.createElement('span');
-                spanName.innerHTML = mainCompanyItem.name;
-                var spanEarnings = document.createElement('span');
-                spanEarnings.innerHTML = ' - ' + mainCompanyItem.earnings;
-                mainItemElement.appendChild(spanName);
-                mainItemElement.appendChild(spanEarnings);
-
-                menu.appendChild(mainItemElement);
-
-                drawSubMenu(mainCompanyItem, mainItemElement);
-
-                if (mainCompanyItem.earnings != mainCounter) {
-                    var s = document.createElement('span');
-                    s.id = 'summ' + mainCompanyItem.id;
-                    s.innerHTML = ' | ' + mainCounter;
-                    mainItemElement.insertBefore(s, mainItemElement.children[2]);
-                }
-            }
-            mainCounter = 0;
-        });
-
-
-        function drawSubMenu(parentCompany, parentCompanyElement) {
-
-            var subCounter = parentCompany.earnings;
-
-            data.forEach(function (currentCompany) {
-
-                if (currentCompany.parent === parentCompany.id) {
-
-                    mainCounter += currentCompany.earnings;
-                    var subli = document.createElement('ul');
-                    subli.id = currentCompany.id;
-                    subli.className = 'item';
-                    //subli.onmouseover = crudButtons();
-                    var spanName1 = document.createElement('span');
-                    spanName1.innerHTML = currentCompany.name;
-                    var spanEarnings1 = document.createElement('span');
-                    spanEarnings1.innerHTML = ' - ' + currentCompany.earnings;
-                    var spanSumm1 = document.createElement('span');
-                    spanSumm1.innerHTML = '';
-                    spanSumm1.id = 'summ' + currentCompany.id;
-                    subli.appendChild(spanName1);
-                    subli.appendChild(spanEarnings1);
-                    subli.appendChild(spanSumm1);
-                    parentCompanyElement.appendChild(subli);
-
-                    subCounter += drawSubMenu(currentCompany, subli);
-                    var f = document.getElementById('summ' + parentCompany.id);
-
-                    if (f !== null) {
-                        f.innerHTML = ' | ' + subCounter;
-                    }
-                }
-            });
-
-            return subCounter;
-        }
-
-        return menu;
-    }
-
-    $(function () {
-        $('#formx').submit(function () {
-            var data = $('#formx').serialize();
-            $.ajax({
-                type: 'get',
-                url: '/add',
-                data: data,
-                success: function (data) {
-                    alert('New company was added!');
-                },
-                error: function (xhr, str) {
-                    alert('Error: ' + xhr.responseCode);
-                }
-            });
-        });
-    });
-
-//    function crudButtons(e) {
-//        if(e.target.className === 'item'){
-//        console.log(e.target.id);
-//    }
-//    }
-</script>
 </html>
