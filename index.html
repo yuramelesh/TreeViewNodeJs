@@ -3,85 +3,113 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Welcome</title>
-    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <title>YuraMelesh</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="js/view.js"></script>
     <link href="css/style.css" rel="stylesheet">
-    <style>
-
-
-    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
-
-<h1>Welcome to my Node.js test task!</h1>
-
-<div id="buttons_block">
-    <div id="show_div"><a href="#" id="show_link">Show companies tree</a></div>
-    <div>|</div>
-    <div id="create_div"><a href="#" id="create_link">Create company</a></div>
-    <div>|</div>
-    <div id="edit_div"><a href="#" id="edit_link">Edit company</a></div>
-    <div>|</div>
-    <div id="remove_div"><a href="#" id="remove_link">Remove company</a></div>
+<div>
+    <div id="head">
+        <h1>Companies structure manager</h1>
+    </div>
+    <div class="btn-group btn-group-justified" role="group" aria-label=""
+         style="width: auto; padding-top: 20px; padding-left: 150px;">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" id="show_link">Companies tree</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" id="create_link">Create company</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" id="edit_link">Edit company information</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" id="remove_link">Remove company</button>
+        </div>
+    </div>
 </div>
 
 <div id="main-content">
+
     <div id="main"></div>
 
     <div id='add-form'>
-        <form method="get" id="adding" style="margin: 10px;  ">
+        <form class="form-horizontal" method="get" id="adding">
             <legend>Add company:</legend>
-            <br>
-            <label>Name:</label>
-            <input id="name" name="name" value="" type="text" required>
-            <br>
-            <label>Earnings:</label>
-            <input type="number" id="email" name="earnings" value="" required>
-            <label>Parent company:</label>
-            <select id="addList" name="parent">
-                <option value="0"> None</option>
-            </select>
-            <br>
-            <input value="Submit" type="submit">
+            <div class="form-group">
+                <label>Name:</label>
+                <input id="name" name="name" value="" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Earnings:</label>
+                <input type="number" id="email" name="earnings" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Parent company:</label>
+                <select id="addList" name="parent">
+                    <option value="0">None</option>
+                </select>
+            </div>
+            <input class="btn btn-default" value="Submit" type="submit">
         </form>
     </div>
 
     <div id='edit-form'>
-        <form method="get" id="edit" style="margin: 10px;  ">
+        <form class="form-horizontal" method="get" id="edit">
             <legend>Edit company information:</legend>
-            <label>Select company:</label>
-            <select id="editList" name="id">
-            </select>
-            <br>
-            <label>Name:</label>
-            <input id="name" name="name" value="" type="text">
-            <br>
-            <label>Earnings:</label>
-            <input type="number" id="email" name="earnings" value="">
-            <label>Parent company:</label>
-            <select id="parentList" name="parent">
-                <option value="0"> None</option>
-            </select>
-            <input value="Submit" type="submit">
+            <div class="form-group">
+                <label>Edit company:</label>
+                <select id="editList" name="id">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <input id="name" name="name" value="" type="text">
+            </div>
+            <div class="form-group">
+                <label>Earnings:</label>
+                <input type="number" id="email" name="earnings" value="">
+            </div>
+            <div class="form-group">
+                <label>Parent company:</label>
+                <select id="parentList" name="parent">
+                    <option value="0"> None</option>
+                </select>
+            </div>
+            <input class="btn btn-default" value="Submit" type="submit">
         </form>
     </div>
 
     <div id='delete-form'>
-        <form method="get" id="delete" style="margin: 10px;  ">
+        <form class="form-horizontal" method="get" id="delete">
             <legend>Delete company:</legend>
-            <br>
-            <label>Company:</label>
-            <select id="deleteList" name="id" onchange="monitor()">
-                <option value="0"> None</option>
-            </select>
-            <br>
-            <input value="Delete" type="submit">
+            <div class="form-group">
+                <label>Select company:</label>
+                <select id="deleteList" name="id">
+                    <option value="0"> None</option>
+                </select>
+            </div>
+            <input class="btn btn-default" value="Delete" type="submit">
         </form>
     </div>
-
-
+    <div class="footer">
+        <div>Created by Yura Melesh</div>
+        <div><a href="https://github.com/yuramelesh">GitHub</a></div>
+        <div><a href="https://www.linkedin.com/in/yura-melesh-95968a66?trk=nav_responsive_tab_profile">LinkedIn</a></div>
+        <div><a href="https://www.facebook.com/yuramelesh">Facebook</a></div>
+    </div>
 </div>
 </body>
 </html>

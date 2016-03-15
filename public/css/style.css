@@ -1,33 +1,94 @@
+body {
+    font-family: Arial;
+    background-color: #F4F4F4;
+    color: #202121;
+}
+
+a {
+    color: #3c948b;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #888;
+    text-decoration: none;
+}
+
 ul {
     list-style: none;
 }
 
-#buttons_block > div{
+li {
+    padding: 5px;
+}
+
+.footer {
+    float: left;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.footer > div{
+    float: left;
+    padding-right: 50px;
+}
+
+#head {
+    float: left;
+}
+
+#buttons_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#buttons_block > div {
     float: left;
     margin: 10px;
 }
 
-#content{
-    clear: both;
-}
-#main-content{
+#content {
     clear: both;
 }
 
-#edit-form{
-    display: none;
-    border: 1px solid black;
-    width: 300px;
+#main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clear: both;
 }
 
-#add-form{
+#edit-form {
     display: none;
-    border: 1px solid black;
-    width: 300px;
+    border-radius: 10px;
+    justify-content: center;
 }
 
-#delete-form{
+#add-form {
     display: none;
-    border: 1px solid black;
-    width: 300px;
+    border-radius: 10px;
+    justify-content: center;
+    width: auto;
+}
+
+#delete-form {
+    display: none;
+    border-radius: 10px;
+    justify-content: center;
 }

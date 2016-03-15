@@ -11,6 +11,8 @@ function loadData() {
         url: "/getData",
         success: function (data) {
 
+            drawMenu(data);
+
             var delElem = document.getElementById('deleteList');
             var addElem = document.getElementById('addList');
             var editElem = document.getElementById('editList');
@@ -39,7 +41,6 @@ $(function () {
         $('#delete-form').css("display", "none");
         $('#add-form').css("display", "inherit");
         $('#edit-form').css("display", "none");
-
     })
 });
 
@@ -58,8 +59,6 @@ $(function () {
         $('#add-form').css("display", "none");
         $('#edit-form').css("display", "none");
         $('#delete-form').css("display", "inherit");
-
-
     })
 });
 
@@ -69,9 +68,7 @@ $(function () {
             type: "GET",
             url: "/getData",
             success: function (data) {
-
                 drawMenu(data);
-
             }
         });
     })
@@ -83,9 +80,8 @@ function drawMenu(data) {
     $('#delete-form').css("display", "none");
     $('#edit-form').css("display", "none");
 
-
     if (document.getElementById('main').hasChildNodes() === true) {
-        document.getElementById('main').innerHTML = ' ';
+        document.getElementById('main').innerHTML = '';
     }
 
     var menu = document.createElement('ul');
@@ -98,16 +94,18 @@ function drawMenu(data) {
 
         if (mainCompanyItem.parent === 0) {
 
-            var mainItemElement = document.createElement('ul');
+            var mainItemElement = document.createElement('li');
             mainItemElement.id = mainCompanyItem.id;
             mainItemElement.className = 'item';
-            var spanName = document.createElement('span');
-            spanName.innerHTML = mainCompanyItem.name;
+            var div1 = document.createElement('div');
+            div1.innerHTML = mainCompanyItem.name;
             var spanEarnings = document.createElement('span');
-            spanEarnings.innerHTML = ' - ' + mainCompanyItem.earnings;
-            mainItemElement.appendChild(spanName);
-            mainItemElement.appendChild(spanEarnings);
-
+            spanEarnings.innerHTML = ' | ' + mainCompanyItem.earnings;
+            spanEarnings.style.background = '#c5cae9';
+            div1.appendChild(spanEarnings);
+            div1.className = 'selection';
+            div1.id = 'div' + mainItemElement.id;
+            mainItemElement.appendChild(div1);
             menu.appendChild(mainItemElement);
 
             drawSubMenu(mainCompanyItem, mainItemElement);
@@ -116,7 +114,8 @@ function drawMenu(data) {
                 var s = document.createElement('span');
                 s.id = 'summ' + mainCompanyItem.id;
                 s.innerHTML = ' | ' + mainCounter;
-                mainItemElement.insertBefore(s, mainItemElement.children[2]);
+                s.style.background = '#7986cb';
+                div1.insertBefore(s, mainItemElement.children[2]);
             }
         }
         mainCounter = 0;
@@ -132,26 +131,32 @@ function drawMenu(data) {
             if (currentCompany.parent === parentCompany.id) {
 
                 mainCounter += currentCompany.earnings;
-                var subli = document.createElement('ul');
+
+                var subUl = document.createElement('ul');
+                var subli = document.createElement('li');
                 subli.id = currentCompany.id;
                 subli.className = 'item';
-                var spanName1 = document.createElement('span');
-                spanName1.innerHTML = currentCompany.name;
+                var div2 = document.createElement('div');
+                div2.innerHTML = currentCompany.name;
                 var spanEarnings1 = document.createElement('span');
-                spanEarnings1.innerHTML = ' - ' + currentCompany.earnings;
+                spanEarnings1.innerHTML = ' | ' + currentCompany.earnings;
+                spanEarnings1.style.background = '#c5cae9';
                 var spanSumm1 = document.createElement('span');
                 spanSumm1.innerHTML = '';
                 spanSumm1.id = 'summ' + currentCompany.id;
-                subli.appendChild(spanName1);
-                subli.appendChild(spanEarnings1);
-                subli.appendChild(spanSumm1);
-                parentCompanyElement.appendChild(subli);
-
+                subli.appendChild(div2);
+                div2.className = 'selection';
+                div2.id = 'div' + currentCompany.id;
+                div2.appendChild(spanEarnings1);
+                div2.appendChild(spanSumm1);
+                subUl.appendChild(subli);
+                parentCompanyElement.appendChild(subUl);
                 subCounter += drawSubMenu(currentCompany, subli);
                 var f = document.getElementById('summ' + parentCompany.id);
 
                 if (f !== null) {
                     f.innerHTML = ' | ' + subCounter;
+                    f.style.background = '#7986cb';
                 }
             }
         });
@@ -171,10 +176,10 @@ $(function () {
             data: data,
             success: function () {
                 $('#main').html('');
-                $('#main').text('New company was added!');
+
             },
             error: function (xhr, str) {
-                //alert('Error: ' + xhr.responseCode);
+
             }
         });
     });
@@ -189,10 +194,9 @@ $(function () {
             data: data,
             success: function () {
                 $('#main').html('');
-                $('#main').text('Company information was updated!');
             },
             error: function (xhr, str) {
-                //alert('Error: ' + xhr.responseCode);
+
             }
         });
     });
@@ -209,14 +213,7 @@ $(function () {
 
             },
             error: function (xhr, str) {
-                //alert('Error: ' + xhr.responseCode);
             }
         });
     });
 });
-
-//function monitor(){
-//    var sel = document.getElementById('deleteList');
-//    var s = sel.value;
-//    console.log(s);
-//}

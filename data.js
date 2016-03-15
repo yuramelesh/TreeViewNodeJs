@@ -4,13 +4,6 @@
 
 var mysql = require('mysql');
 
-//var connection = mysql.createConnection({
-//    host: 'localhost',
-//    user: 'root',
-//    password: '78561245',
-//    database: 'servernode'
-//});
-
 var connection = mysql.createConnection({
     host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
     user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
