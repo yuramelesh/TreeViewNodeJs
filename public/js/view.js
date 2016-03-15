@@ -172,7 +172,7 @@ $(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
         $.ajax({
-            type: 'get',
+            type: 'GET',
             url: '/add',
             data: data,
             success: function () {
@@ -190,7 +190,7 @@ $(function () {
     $('#edit').submit(function () {
         var data = $('#edit').serialize();
         $.ajax({
-            type: 'get',
+            type: 'GET',
             url: '/update',
             data: data,
             success: function () {
@@ -207,7 +207,7 @@ $(function () {
     $('#delete').submit(function () {
         var data = $('#delete').serialize();
         $.ajax({
-            type: 'get',
+            type: 'GET',
             url: '/remove',
             data: data,
             success: function () {
