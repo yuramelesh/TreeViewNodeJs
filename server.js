@@ -142,6 +142,10 @@ var SampleApp = function () {
         });
 
         self.app.get('/update', function (req, res) {
+            console.log(req.query.id);
+            console.log(req.query.name);
+            console.log(req.query.earnings);
+            console.log(req.query.parent);
             data.update(req.query.id, req.query.name, req.query.earnings, req.query.parent);
         });
 

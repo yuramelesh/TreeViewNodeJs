@@ -4,6 +4,8 @@
 
 var mysql = require('mysql');
 
+
+
 var connection = mysql.createConnection({
     host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
     user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
@@ -43,7 +45,7 @@ function update(id, name, earnings, parent) {
         });
     }
 
-    if (earnings !== '') {
+    if (earnings !== null) {
         connection.query(updateEarnings, [earnings, id], function (err, res) {
             if (err) throw err;
             else {

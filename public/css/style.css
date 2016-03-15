@@ -23,21 +23,19 @@ li {
 }
 
 .footer {
-    float: left;
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+    position: absolute;
+    bottom: 10px;
 }
 
 .footer > div{
     float: left;
     padding-right: 50px;
+
 }
 
 #head {
