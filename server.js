@@ -126,27 +126,29 @@ var SampleApp = function () {
         //  Add handlers for the app (from the routes).
 
         self.app.use(express.static(__dirname + '/public'));
+        self.app.use(express.bodyParser());
 
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
 
-        self.app.get('/getData', function (req, res) {
+        self.app.post('/getData', function (req, res) {
             data.mysqlconnection.query("SELECT * FROM companies WHERE 1", function (err, result) {
                 res.send(result);
             });
         });
 
-        self.app.get('/remove', function (req, res) {
-            data.remove(req.query.id);
+        self.app.post('/remove', function (req, res) {
+            data.remove(req.body.id);
         });
 
-        self.app.get('/update', function (req, res) {
-            data.update(req.query.id, req.query.name, req.query.earnings, req.query.parent);
+        self.app.post('/update', function (req, res) {
+            data.update(req.body.id, req.body.name, req.body.earnings, req.body.parent);
+            res.send();
         });
 
-        self.app.get('/add', function (req, res) {
-            data.add(req.query.name, req.query.earnings, req.query.parent);
+        self.app.post('/add', function (req, res) {
+            data.add(req.body.name, req.body.earnings, req.body.parent);
         });
     };
 

@@ -24,6 +24,7 @@
     <div id="head">
         <h1>Companies structure manager</h1>
     </div>
+
     <div class="btn-group btn-group-justified" role="group" aria-label=""
          style="width: auto; padding-top: 20px; padding-left: 150px;">
         <div class="btn-group" role="group">
@@ -46,7 +47,7 @@
     <div id="main"></div>
 
     <div id='add-form'>
-        <form class="form-horizontal" method="GET" id="adding">
+        <form class="form-horizontal" method="POST" id="adding">
             <legend>Add company:</legend>
             <div class="form-group">
                 <label>Name:</label>
@@ -67,7 +68,7 @@
     </div>
 
     <div id='edit-form'>
-        <form class="form-horizontal" method="GET" id="edit">
+        <form id="edit" class="form-horizontal" method="POST">
             <legend>Edit company information:</legend>
             <div class="form-group">
                 <label>Edit company:</label>
@@ -76,11 +77,11 @@
             </div>
             <div class="form-group">
                 <label>Name:</label>
-                <input id="name" name="name" value="" type="text">
+                <input name="name" value="" type="text">
             </div>
             <div class="form-group">
                 <label>Earnings:</label>
-                <input type="number" id="email" name="earnings" value="">
+                <input type="number" name="earnings" value="">
             </div>
             <div class="form-group">
                 <label>Parent company:</label>
@@ -93,7 +94,7 @@
     </div>
 
     <div id='delete-form'>
-        <form class="form-horizontal" method="GET" id="delete">
+        <form class="form-horizontal" method="POST" id="delete">
             <legend>Delete company:</legend>
             <div class="form-group">
                 <label>Select company:</label>

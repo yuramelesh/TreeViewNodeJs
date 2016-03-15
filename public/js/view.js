@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", loadData);
 function loadData() {
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/getData",
         success: function (data) {
 
@@ -65,7 +65,7 @@ $(function () {
 $(function () {
     $('#show_link').click(function () {
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "/getData",
             success: function (data) {
                 drawMenu(data);
@@ -172,7 +172,7 @@ $(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/add',
             data: data,
             success: function () {
@@ -190,11 +190,11 @@ $(function () {
     $('#edit').submit(function () {
         var data = $('#edit').serialize();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/update',
             data: data,
             success: function () {
-                $('#main').html('');
+                loadData();
             },
             error: function (xhr, str) {
 
@@ -207,7 +207,7 @@ $(function () {
     $('#delete').submit(function () {
         var data = $('#delete').serialize();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/remove',
             data: data,
             success: function () {
