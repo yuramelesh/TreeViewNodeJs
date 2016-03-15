@@ -174,7 +174,7 @@ $(function () {
                 $('#main').text('New company was added!');
             },
             error: function (xhr, str) {
-                alert('Error: ' + xhr.responseCode);
+                //alert('Error: ' + xhr.responseCode);
             }
         });
     });
@@ -192,8 +192,7 @@ $(function () {
                 $('#main').text('Company information was updated!');
             },
             error: function (xhr, str) {
-                alert('Error: ' + xhr.responseCode);
-
+                //alert('Error: ' + xhr.responseCode);
             }
         });
     });
@@ -210,7 +209,7 @@ $(function () {
 
             },
             error: function (xhr, str) {
-                alert('Error: ' + xhr.responseCode);
+                //alert('Error: ' + xhr.responseCode);
             }
         });
     });
