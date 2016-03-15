@@ -4,6 +4,13 @@
 
 var mysql = require('mysql');
 
+//var connection = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'root',
+//    password: '78561245',
+//    database: 'servernode'
+//});
+
 var connection = mysql.createConnection({
     host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
     user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
@@ -34,7 +41,7 @@ var updateEarnings = 'UPDATE companies SET earnings = ? WHERE id=?';
 var updateParent = 'UPDATE companies SET parent = ? WHERE id=?';
 
 function update(id, name, earnings, parent) {
-    if (name !== '') {
+    if (name != '') {
         connection.query(updateName, [name, id], function (err, res) {
             if (err) throw err;
             else {
@@ -43,7 +50,7 @@ function update(id, name, earnings, parent) {
         });
     }
 
-    if (earnings !== null) {
+    if (earnings != '') {
         connection.query(updateEarnings, [earnings, id], function (err, res) {
             if (err) throw err;
             else {
@@ -52,7 +59,7 @@ function update(id, name, earnings, parent) {
         });
     }
 
-    if (parent !== '') {
+    if (parent != '') {
         connection.query(updateParent, [parent, id], function (err, res) {
             if (err) throw err;
             else {
