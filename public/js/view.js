@@ -171,11 +171,14 @@ $(function () {
 
 $(function () {
     $('#delete').submit(function () {
-        var data = $('#delete').serialize();
+        //var data = $('#delete').serialize();
+        var del = $('#deleteList').val();
         $.ajax({
             url: '/remove',
             type: 'POST',
-            data: data,
+            data: {
+                'deleteList': del
+            },
             success: function () {
                 loadData();
             }
@@ -185,11 +188,19 @@ $(function () {
 
 $(function () {
     $('#adding').submit(function () {
-        var data = $('#adding').serialize();
+        //var data = $('#adding').serialize();
+        var addN = $('#addName').val();
+        var addE = $('#addEarnings').val();
+        var addP = $('#addParent').val();
+
         $.ajax({
             url: '/add',
             type: 'POST',
-            data: data,
+            data: {
+                'addName': addN,
+                'addEarnings': addE,
+                'addParent': addP
+            },
             success: function () {
                 loadData();
             }
