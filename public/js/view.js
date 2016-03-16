@@ -158,76 +158,93 @@ function drawMenu(data) {
 
 $(function () {
     $('#show_link').click(function () {
-        $.ajax({
-            url: "/getData",
-            type: "POST",
-            success: function (data) {
-                drawMenu(data);
-            }
-        });
+        $.post("/getData", function (data) {
+                    drawMenu(data);
+                });
+        //$.ajax({
+        //    url: "/getData",
+        //    type: "POST",
+        //    success: function (data) {
+        //        drawMenu(data);
+        //    }
+        //});
     })
 });
 
 
 $(function () {
     $('#delete').submit(function () {
-        //var data = $('#delete').serialize();
-        var del = $('#deleteList').val();
-        $.ajax({
-            url: '/remove',
-            type: 'POST',
-            data: {
-                'deleteList': del
-            },
-            success: function () {
-                loadData();
-            }
+        var data = $('#delete').serialize();
+        $.post("/remove", data, function () {
+            loadData();
         });
+        //
+        //var del = $('#deleteList').val();
+        //$.ajax({
+        //    url: '/remove',
+        //    type: 'POST',
+        //    data: {
+        //        'deleteList': del
+        //    },
+        //    success: function () {
+        //        loadData();
+        //    }
+        //});
     });
 });
 
 $(function () {
     $('#adding').submit(function () {
-        //var data = $('#adding').serialize();
-        var addN = $('#addName').val();
-        var addE = $('#addEarnings').val();
-        var addP = $('#addParent').val();
+        var data = $('#adding').serialize();
 
-        $.ajax({
-            url: '/add',
-            type: 'POST',
-            data: {
-                'addName': addN,
-                'addEarnings': addE,
-                'addParent': addP
-            },
-            success: function () {
-                loadData();
-            }
+        $.post("/add", data, function () {
+            loadData();
         });
+
+        //var addN = $('#addName').val();
+        //var addE = $('#addEarnings').val();
+        //var addP = $('#addParent').val();
+        //
+        //$.ajax({
+        //    url: '/add',
+        //    type: 'POST',
+        //    data: {
+        //        'addName': addN,
+        //        'addEarnings': addE,
+        //        'addParent': addP
+        //    },
+        //    success: function () {
+        //        loadData();
+        //    }
+        //});
     });
 });
 
 $(function () {
     $('#edit').submit(function () {
-        //var data = $('#edit').serialize();
-        var cid = $('#editList').val();
-        var cname = $('#editName').val();
-        var cearning = $('#editEarnings').val();
-        var cparent = $('#editParent').val();
-        console.log(cid + cname + cearning + cparent)
-        $.ajax({
-            url: '/update',
-            type: 'POST',
-            data: {
-                'editList': cid,
-                'editName': cname,
-                'editEarnings': cearning,
-                'editParent': cparent
-            },
-            success: function () {
-                loadData();
-            }
+        var data = $('#edit').serialize();
+
+        $.post("/update", data, function () {
+            loadData();
         });
+
+        //var cid = $('#editList').val();
+        //var cname = $('#editName').val();
+        //var cearning = $('#editEarnings').val();
+        //var cparent = $('#editParent').val();
+        //console.log(cid + cname + cearning + cparent)
+        //$.ajax({
+        //    url: '/update',
+        //    type: 'POST',
+        //    data: {
+        //        'editList': cid,
+        //        'editName': cname,
+        //        'editEarnings': cearning,
+        //        'editParent': cparent
+        //    },
+        //    success: function () {
+        //        loadData();
+        //    }
+        //});
     });
 });
