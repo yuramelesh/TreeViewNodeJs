@@ -142,16 +142,15 @@ var SampleApp = function () {
             });
         });
 
-        self.app.post('/remove', function (req, res) {
+        self.app.post('/remove', function (req) {
             data.remove(req.body.id);
         });
 
-        self.app.post('/update', function (req, res) {
+        self.app.post('/update', function (req) {
             data.updating(req.body.id, req.body.name, req.body.earnings, req.body.parent);
-            res.send('');
         });
 
-        self.app.post('/add', function (req, res) {
+        self.app.post('/add', function (req) {
             data.adding(req.body.name, req.body.earnings, req.body.parent);
         });
     };
