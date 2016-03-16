@@ -77,7 +77,7 @@ function remove(id) {
     });
 }
 
-//exports.mysqlconnection = connection;
+exports.mysqlconnection = connection;
 //exports.adding = adding;
 exports.updating = updating;
 exports.remove = remove;

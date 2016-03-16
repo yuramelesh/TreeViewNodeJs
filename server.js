@@ -155,7 +155,7 @@ var SampleApp = function () {
         }
 
         self.app.post('/getData', function (req, res) {
-            data.mysqlconnection.query("SELECT * FROM companies WHERE 1", function (err, result) {
+            connection.query("SELECT * FROM companies WHERE 1", function (err, result) {
                 res.send(result);
             });
         });
@@ -165,7 +165,35 @@ var SampleApp = function () {
         });
 
         self.app.post('/update', function (req) {
-            data.updating(req.body.id, req.body.name, req.body.earnings, req.body.parent);
+
+            var updateName = 'UPDATE companies SET name = ? WHERE id=?';
+            var updateEarnings = 'UPDATE companies SET earnings = ? WHERE id=?';
+            var updateParent = 'UPDATE companies SET parent = ? WHERE id=?';
+
+            //data.updating(req.body.id, req.body.name, req.body.earnings, req.body.parent);
+            if (req.body.name !== '') {
+                connection.query(updateName, [req.body.name, req.body.id], function (err, res) {
+                    if (err) throw err;
+                    else {
+                    }
+                });
+            }
+
+            if (req.body.earnings !== '') {
+                connection.query(updateEarnings, [req.body.earnings, req.body.id], function (err, res) {
+                    if (err) throw err;
+                    else {
+                    }
+                });
+            }
+
+            if (req.body.parent !== '') {
+                connection.query(updateParent, [req.body.parent, req.body.id], function (err, res) {
+                    if (err) throw err;
+                    else {
+                    }
+                });
+            }
         });
 
         self.app.post('/add', function (req) {
