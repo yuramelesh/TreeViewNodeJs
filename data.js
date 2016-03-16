@@ -72,15 +72,18 @@ function updating(id, name, earnings, parent) {
  */
 
 function remove(id) {
+
+//    var xchange = connection.query('SELECT parent FROM companies WHERE id=' + id);
+
     connection.query('DELETE FROM companies WHERE id=' + id, function (err, result) {
     });
 
     connection.query('SELECT * FROM companies WHERE parent=' + id, function (err, result) {
-        if (result !== null) {
             result.forEach(function (obj) {
-                updating(obj.id, obj.name, obj.earnings, 0);
+                    updating(obj.id, obj.name, obj.earnings, 0);
+
             });
-        }
+
     });
 }
 
