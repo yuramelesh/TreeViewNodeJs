@@ -2,7 +2,7 @@
  * Connecting to DataBase
  */
 
-var mysql = require('mysql');
+//var mysql = require('mysql');
 
 //var connection = mysql.createConnection({
 //    host: 'localhost',
