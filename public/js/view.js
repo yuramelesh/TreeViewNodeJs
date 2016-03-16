@@ -163,11 +163,6 @@ $(function () {
             type: "POST",
             success: function (data) {
                 drawMenu(data);
-                console.log('success')
-
-            },
-            error: function () {
-                console.log('error!!!')
             }
         });
     })
@@ -191,9 +186,6 @@ $(function () {
 $(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
-        //console.log(data);
-        //var d = data.toJSON();
-        //console.log(d);
         $.ajax({
             url: '/add',
             type: 'POST',

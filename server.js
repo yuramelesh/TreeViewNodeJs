@@ -128,9 +128,9 @@ var SampleApp = function () {
         self.app.use(express.static(__dirname + '/public'));
         self.app.use(express.bodyParser());
 
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
-        }
+        //for (var r in self.routes) {
+        //    self.app.get(r, self.routes[r]);
+        //}
 
         for (var r in self.routes) {
             self.app.post(r, self.routes[r]);
