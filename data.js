@@ -4,29 +4,38 @@
 
 var mysql = require('mysql');
 
-//var connection = mysql.createConnection({
-//    host: 'localhost',
-//    user: 'root',
-//    password: '78561245',
-//    database: 'servernode'
-//});
-
 var connection = mysql.createConnection({
-    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
-    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
-    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
-    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
-    database : process.env.OPENSHIFT_APP_NAME
+    host: 'localhost',
+    user: 'root',
+    password: '78561245',
+    database: 'servernode'
 });
+
+//var connection = mysql.createConnection({
+//    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
+//    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+//    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+//    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
+//    database : process.env.OPENSHIFT_APP_NAME
+//});
 
 /**
  * Adding new company
  */
 
 function adding(n, e, p) {
-    if(!p){p = 0};
-    if(!e){e = 0};
-    if(!n){n = ''};
+    if(n){
+    }else{
+        n = '[NoName]';
+    };
+    if(e){
+    }else{
+        e = 0;
+    };
+    if(p){
+    }else{
+        p = 0;
+    };
 
     var newCompany = {name: n, earnings: e, parent: p};
     connection.query('INSERT INTO companies SET ?', newCompany, function (result) {
