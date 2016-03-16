@@ -41,7 +41,7 @@ function updating(id, name, earnings, parent) {
     console.log('-- == start updating == --');
     if (name !== '') {
         console.log('if (name !== )');
-        connection.query(updateName, [name, id], function (err, res) {
+        connection.query(updateName, [name, id], function (res) {
             //if (err) throw err;
             //else {
             //}
@@ -49,7 +49,7 @@ function updating(id, name, earnings, parent) {
     }
 
     if (earnings !== '') {
-        connection.query(updateEarnings, [earnings, id], function (err, res) {
+        connection.query(updateEarnings, [earnings, id], function (res) {
             //if (err) throw err;
             //else {
             //}
@@ -57,7 +57,7 @@ function updating(id, name, earnings, parent) {
     }
 
     if (parent !== '') {
-        connection.query(updateParent, [parent, id], function (err, res) {
+        connection.query(updateParent, [parent, id], function (res) {
             //if (err) throw err;
             //else {
             //}
@@ -70,10 +70,10 @@ function updating(id, name, earnings, parent) {
  */
 
 function remove(id) {
-    connection.query('DELETE FROM companies WHERE id=' + id, function (err, result) {
+    connection.query('DELETE FROM companies WHERE id=' + id, function (result) {
     });
 
-    connection.query('SELECT * FROM companies WHERE parent=' + id, function (err, result) {
+    connection.query('SELECT * FROM companies WHERE parent=' + id, function (result) {
         result.forEach(function(obj){
             updating(obj.id, obj.name, obj.earnings, 0);
         });
