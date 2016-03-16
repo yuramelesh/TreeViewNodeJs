@@ -149,7 +149,7 @@ var SampleApp = function () {
 
         self.app.post('/update', function (req, res) {
             data.updating(req.body.editList, req.body.editName, req.body.editEarnings, req.body.editParent);
-            res.end();
+            res.end('update');
         });
 
         self.app.post('/add', function (req, res) {
