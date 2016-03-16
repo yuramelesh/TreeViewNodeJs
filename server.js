@@ -128,9 +128,9 @@ var SampleApp = function () {
         self.app.use(express.static(__dirname + '/public'));
         self.app.use(express.bodyParser());
 
-        //for (var r in self.routes) {
-        //    self.app.get(r, self.routes[r]);
-        //}
+        for (var r in self.routes) {
+            self.app.get(r, self.routes[r]);
+        }
 
         for (var r in self.routes) {
             self.app.post(r, self.routes[r]);
@@ -140,18 +140,22 @@ var SampleApp = function () {
             data.mysqlconnection.query("SELECT * FROM companies WHERE 1", function (err, result) {
                 res.send(result);
             });
+            res.end();
         });
 
-        self.app.post('/remove', function (req) {
+        self.app.post('/remove', function (req, res) {
             data.remove(req.body.deleteList);
+            res.end();
         });
 
-        self.app.post('/update', function (req) {
+        self.app.post('/update', function (req, res) {
             data.updating(req.body.editList, req.body.editName, req.body.editEarnings, req.body.editParent);
+            res.end();
         });
 
-        self.app.post('/add', function (req) {
+        self.app.post('/add', function (req, res) {
             data.adding(req.body.addName, req.body.addEarnings, req.body.addParent);
+            res.end();
         });
     };
 
