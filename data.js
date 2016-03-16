@@ -23,12 +23,12 @@ var connection = mysql.createConnection({
  * Adding new company
  */
 
-function adding(n, e, p) {
-    if(!n) n = '[NoName]';
-    if(!e) e = 0;
-    if(!p) p = 0;
+function adding(addName, addEarnings, addParent) {
+    if(!addName) addName = '[NoName]';
+    if(!addEarnings) addEarnings = 0;
+    if(!addParent) addParent = 0;
 
-    var newCompany = {name: n, earnings: e, parent: p};
+    var newCompany = {name: addName, earnings: addEarnings, parent: addParent};
     connection.query('INSERT INTO companies SET ?', newCompany, function (result) {
     });
 }
