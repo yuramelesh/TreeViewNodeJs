@@ -104,7 +104,7 @@ function drawMenu(data) {
                 s.innerHTML = ' | ' + mainCounter;
                 s.style.background = '#7986cb';
                 div1.appendChild(s);
-               // div1.insertBefore(s, mainItemElement.children[2]);
+                // div1.insertBefore(s, mainItemElement.children[2]);
             }
         }
         mainCounter = 0;

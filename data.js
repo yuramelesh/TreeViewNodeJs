@@ -7,7 +7,7 @@ var mysql = require('mysql');
 //var connection = mysql.createConnection({
 //    host: 'localhost',
 //    user: 'root',
-//    password: '78561245',
+//    password: 'password',
 //    database: 'servernode'
 //});
 
@@ -73,17 +73,15 @@ function updating(id, name, earnings, parent) {
 
 function remove(id) {
 
-//    var xchange = connection.query('SELECT parent FROM companies WHERE id=' + id);
-
     connection.query('DELETE FROM companies WHERE id=' + id, function (err, result) {
     });
 
     connection.query('SELECT * FROM companies WHERE parent=' + id, function (err, result) {
-            result.forEach(function (obj) {
-                    updating(obj.id, obj.name, obj.earnings, 0);
-
-            });
-
+           if(result) {
+               result.forEach(function (obj) {
+                   updating(obj.id, obj.name, obj.earnings, 0);
+               });
+           }
     });
 }
 
