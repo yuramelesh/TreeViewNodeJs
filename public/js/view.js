@@ -159,21 +159,41 @@ function drawMenu(data) {
 $(function () {
     $('#show_link').click(function () {
         $.ajax({
-            type: "POST",
             url: "/getData",
+            type: "POST",
             success: function (data) {
                 drawMenu(data);
+                console.log('success')
+
+            },
+            error: function () {
+                console.log('error!!!')
             }
         });
     })
+});
+
+
+$(function () {
+    $('#delete').submit(function () {
+        var data = $('#delete').serialize();
+        $.ajax({
+            url: '/remove',
+            type: 'POST',
+            data: data,
+            success: function () {
+                loadData();
+            }
+        });
+    });
 });
 
 $(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
         $.ajax({
-            type: 'POST',
             url: '/add',
+            type: 'POST',
             data: data,
             success: function () {
                 loadData();
@@ -186,21 +206,7 @@ $(function () {
     $('#edit').submit(function () {
         var data = $('#edit').serialize();
         $.ajax({
-            type: 'POST',
             url: '/update',
-            data: data,
-            success: function () {
-                loadData();
-            }
-        });
-    });
-});
-
-$(function () {
-    $('#delete').submit(function () {
-        var data = $('#delete').serialize();
-        $.ajax({
-            url: '/remove',
             type: 'POST',
             data: data,
             success: function () {
