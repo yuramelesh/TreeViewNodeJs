@@ -28,10 +28,12 @@ function adding(n, e, p) {
     }else{
         n = '[NoName]';
     };
+
     if(e){
     }else{
         e = 0;
     };
+
     if(p){
     }else{
         p = 0;
