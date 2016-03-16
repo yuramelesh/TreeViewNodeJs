@@ -6,10 +6,13 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 function loadData() {
 
-    $.ajax({
-        type: "POST",
-        url: "/getData",
-        success: function (data) {
+    $.post("/getData", function () {
+
+    //
+    //$.ajax({
+    //    type: "POST",
+    //    url: "/getData",
+    //    success: function (data) {
 
             drawMenu(data);
 
@@ -31,7 +34,7 @@ function loadData() {
                     elem.appendChild(optionElement);
                 });
             }
-        }
+        //}
     });
 }
 
