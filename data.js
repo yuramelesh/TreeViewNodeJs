@@ -53,7 +53,7 @@ var updateEarnings = 'UPDATE companies SET earnings = ? WHERE id=?';
 var updateParent = 'UPDATE companies SET parent = ? WHERE id=?';
 
 function updating(id, name, earnings, parent) {
-    if (name !== '') {
+    if (name) {
         connection.query(updateName, [name, id], function (err, res) {
             //if (err) throw err;
             //else {
@@ -61,7 +61,7 @@ function updating(id, name, earnings, parent) {
         });
     }
 
-    if (earnings !== '') {
+    if (earnings) {
         connection.query(updateEarnings, [earnings, id], function (err, res) {
             //if (err) throw err;
             //else {
@@ -69,7 +69,7 @@ function updating(id, name, earnings, parent) {
         });
     }
 
-    if (parent !== '') {
+    if (parent) {
         connection.query(updateParent, [parent, id], function (err, res) {
             //if (err) throw err;
             //else {
