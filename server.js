@@ -143,15 +143,15 @@ var SampleApp = function () {
         });
 
         self.app.post('/remove', function (req) {
-            data.remove(req.body.id);
+            data.remove(req.body.deleteList);
         });
 
         self.app.post('/update', function (req) {
-            data.updating(req.body.id, req.body.name, req.body.earnings, req.body.parent);
+            data.updating(req.body.editList, req.body.editName, req.body.editEarnings, req.body.editParent);
         });
 
         self.app.post('/add', function (req) {
-            data.adding(req.body.name, req.body.earnings, req.body.parent);
+            data.adding(req.body.addName, req.body.addEarnings, req.body.addParent);
         });
     };
 

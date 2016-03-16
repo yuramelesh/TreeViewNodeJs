@@ -48,15 +48,15 @@
             <legend>Add company:</legend>
             <div class="form-group">
                 <label>Name:</label>
-                <input id="name" name="name" value="" type="text" required>
+                <input type="text" id="addName" name="addName" value="" required>
             </div>
             <div class="form-group">
                 <label>Earnings:</label>
-                <input type="number" id="email" name="earnings" value="" required>
+                <input type="number" id="addEarnings" name="addEarnings" value="" required>
             </div>
             <div class="form-group">
                 <label>Parent company:</label>
-                <select id="addList" name="parent">
+                <select id="addParent" name="addParent">
                     <option value="0">None</option>
                 </select>
             </div>
@@ -69,20 +69,21 @@
             <legend>Edit company information:</legend>
             <div class="form-group">
                 <label>Edit company:</label>
-                <select id="editList" name="id">
+                <select id="editList" name="editList">
                 </select>
             </div>
             <div class="form-group">
                 <label>Name:</label>
-                <input name="name" value="" type="text">
+                <input type="text" name="editName" value="">
             </div>
             <div class="form-group">
                 <label>Earnings:</label>
-                <input type="number" name="earnings" value="">
+                <input type="number" name="editEarnings" value="">
             </div>
             <div class="form-group">
                 <label>Parent company:</label>
-                <select id="parentList" name="parent">
+                <select id="editParent" name="editParent">
+                    <option> </option>
                     <option value="0"> None</option>
                 </select>
             </div>
@@ -95,7 +96,7 @@
             <legend>Delete company:</legend>
             <div class="form-group">
                 <label>Select company:</label>
-                <select id="deleteList" name="id">
+                <select id="deleteList" name="deleteList">
                     <option value="0"> None</option>
                 </select>
             </div>

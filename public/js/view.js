@@ -14,9 +14,9 @@ function loadData() {
             drawMenu(data);
 
             var delElem = document.getElementById('deleteList');
-            var addElem = document.getElementById('addList');
+            var addElem = document.getElementById('addParent');
             var editElem = document.getElementById('editList');
-            var parentElem = document.getElementById('parentList');
+            var parentElem = document.getElementById('editParent');
 
             addOptions(delElem);
             addOptions(addElem);
@@ -191,6 +191,9 @@ $(function () {
 $(function () {
     $('#adding').submit(function () {
         var data = $('#adding').serialize();
+        //console.log(data);
+        //var d = data.toJSON();
+        //console.log(d);
         $.ajax({
             url: '/add',
             type: 'POST',
