@@ -11,26 +11,22 @@ var mysql = require('mysql');
 //    database: 'servernode'
 //});
 
-var connection = mysql.createConnection({
-    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
-    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
-    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
-    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
-    database : process.env.OPENSHIFT_APP_NAME
-});
+//var connection = mysql.createConnection({
+//    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
+//    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+//    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+//    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
+//    database : process.env.OPENSHIFT_APP_NAME
+//});
 
 /**
  * Adding new company
  */
 
-function adding(n, e, p) {
-
-    var newCompany = {name: n, earnings: e, parent: p};
-    connection.query('INSERT INTO companies SET ?', newCompany, function (err, result) {
-        //console.log(err);
-        //console.log(result);
-    });
-}
+//function adding(n, e, p) {
+//
+//
+//}
 
 /**
  * Updating selected company information
@@ -82,6 +78,6 @@ function remove(id) {
 }
 
 exports.mysqlconnection = connection;
-exports.adding = adding;
+//exports.adding = adding;
 exports.updating = updating;
 exports.remove = remove;

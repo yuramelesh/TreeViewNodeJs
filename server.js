@@ -4,6 +4,24 @@ var express = require('express');
 var fs = require('fs');
 var data = require('./data');
 
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
+    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
+    database : process.env.OPENSHIFT_APP_NAME
+});
+
+//var connection = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'root',
+//    password: '78561245',
+//    database: 'servernode'
+//});
+
+
 /**
  *  Define the sample application.
  */
@@ -151,7 +169,12 @@ var SampleApp = function () {
         });
 
         self.app.post('/add', function (req) {
-            data.adding(req.body.name, req.body.earnings, req.body.parent);
+            var newCompany = {name: req.body.name, earnings: req.body.earnings, parent: req.body.parent     };
+            connection.query('INSERT INTO companies SET ?', newCompany, function (err, result) {
+                //console.log(err);
+                //console.log(result);
+            });
+           // data.adding(req.body.name, req.body.earnings, req.body.parent);
         });
     };
 
