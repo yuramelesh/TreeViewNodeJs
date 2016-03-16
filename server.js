@@ -7,11 +7,11 @@ var data = require('./data');
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
-    user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
-    password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
-    port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
-    database : process.env.OPENSHIFT_APP_NAME
+    host: process.env.OPENSHIFT_MYSQL_DB_HOST,
+    user: process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+    password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+    port: process.env.OPENSHIFT_MYSQL_DB_PORT,
+    database: process.env.OPENSHIFT_APP_NAME
 });
 
 //var connection = mysql.createConnection({
@@ -161,7 +161,15 @@ var SampleApp = function () {
         });
 
         self.app.post('/remove', function (req) {
-            data.remove(req.body.id);
+            //data.remove(req.body.id);
+            connection.query('DELETE FROM companies WHERE id=' + req.body.id, function (err, result) {
+            });
+
+            //connection.query('SELECT * FROM companies WHERE parent=' + req.body.id, function (err, result) {
+            //    result.forEach(function (obj) {
+            //        updating(obj.id, obj.name, obj.earnings, 0);
+            //    });
+            //});
         });
 
         self.app.post('/update', function (req) {
@@ -197,12 +205,12 @@ var SampleApp = function () {
         });
 
         self.app.post('/add', function (req) {
-            var newCompany = {name: req.body.name, earnings: req.body.earnings, parent: req.body.parent     };
+            var newCompany = {name: req.body.name, earnings: req.body.earnings, parent: req.body.parent};
             connection.query('INSERT INTO companies SET ?', newCompany, function (err, result) {
                 //console.log(err);
                 //console.log(result);
             });
-           // data.adding(req.body.name, req.body.earnings, req.body.parent);
+            // data.adding(req.body.name, req.body.earnings, req.body.parent);
         });
     };
 
