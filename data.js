@@ -4,7 +4,12 @@
 
 var mysql = require('mysql');
 
-
+//var connection = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'root',
+//    password: '78561245',
+//    database: 'servernode'
+//});
 
 var connection = mysql.createConnection({
     host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
@@ -19,9 +24,8 @@ var connection = mysql.createConnection({
  */
 
 function adding(n, e, p) {
-console.log('-- data adding ---');
     var newCompany = {name: n, earnings: e, parent: p};
-    connection.query('INSERT INTO companies SET ?', newCompany, function (err, result) {
+    connection.query('INSERT INTO companies SET ?', newCompany, function (result) {
     });
 }
 
@@ -38,25 +42,25 @@ function updating(id, name, earnings, parent) {
     if (name !== '') {
         console.log('if (name !== )');
         connection.query(updateName, [name, id], function (err, res) {
-            if (err) throw err;
-            else {
-            }
+            //if (err) throw err;
+            //else {
+            //}
         });
     }
 
     if (earnings !== '') {
         connection.query(updateEarnings, [earnings, id], function (err, res) {
-            if (err) throw err;
-            else {
-            }
+            //if (err) throw err;
+            //else {
+            //}
         });
     }
 
     if (parent !== '') {
         connection.query(updateParent, [parent, id], function (err, res) {
-            if (err) throw err;
-            else {
-            }
+            //if (err) throw err;
+            //else {
+            //}
         });
     }
 }
