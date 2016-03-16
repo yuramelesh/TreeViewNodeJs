@@ -140,7 +140,6 @@ var SampleApp = function () {
             data.mysqlconnection.query("SELECT * FROM companies WHERE 1", function (err, result) {
                 res.send(result);
             });
-            res.end();
         });
 
         self.app.post('/remove', function (req, res) {
