@@ -24,6 +24,10 @@ var connection = mysql.createConnection({
  */
 
 function adding(n, e, p) {
+    if(!p) p = 0;
+    if(!e) e = '';
+    if(!n) n = 0;
+
     var newCompany = {name: n, earnings: e, parent: p};
     connection.query('INSERT INTO companies SET ?', newCompany, function (result) {
     });
@@ -72,7 +76,7 @@ function remove(id) {
     });
 
     connection.query('SELECT * FROM companies WHERE parent=' + id, function (err, result) {
-        if(result !== null) {
+        if (result !== null) {
             result.forEach(function (obj) {
                 updating(obj.id, obj.name, obj.earnings, 0);
             });
