@@ -24,9 +24,9 @@ var connection = mysql.createConnection({
  */
 
 function adding(n, e, p) {
-    if(!p) p = 0;
-    if(!e) e = 0;
-    if(!n) n = '';
+    if(!p){p = 0};
+    if(!e){e = 0};
+    if(!n){n = ''};
 
     var newCompany = {name: n, earnings: e, parent: p};
     connection.query('INSERT INTO companies SET ?', newCompany, function (result) {
