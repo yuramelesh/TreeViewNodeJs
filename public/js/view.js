@@ -199,11 +199,21 @@ $(function () {
 
 $(function () {
     $('#edit').submit(function () {
-        var data = $('#edit').serialize();
+        //var data = $('#edit').serialize();
+        var cid = $('#editList').val();
+        var cname = $('#editName').val();
+        var cearning = $('#editEarnings').val();
+        var cparent = $('#editParent').val();
+        console.log(cid + cname + cearning + cparent)
         $.ajax({
             url: '/update',
             type: 'POST',
-            data: data,
+            data: {
+                'editList': cid,
+                'editName': cname,
+                'editEarnings': cearning,
+                'editParent': cparent
+            },
             success: function () {
                 loadData();
             }
